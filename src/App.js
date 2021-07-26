@@ -11,38 +11,49 @@ function App() {
     const [cartOpened, setCartOpened] = React.useState(false);
 
     React.useEffect(() => {
-        fetch('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items')
-            .then((res) => {
-                return res.json();
-            })
-            .then((json) => {
-                setItems(json);
-            });
+        // fetch('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items')
+        //     .then((res) => {
+        //         return res.json();
+        //     })
+        //     .then((json) => {
+        //         setItems(json);
+        //     });
 
-        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items').then(res => {
-           console.log(res.data);
+        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items').then((res) => {
+            setItems(res.data);
+        });
+        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart').then((res) => {
+            setCartItems(res.data);
         });
     }, []);
 
     const onAddToCart = (obj) => {
+        axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart', obj);
         setCartItems((prev) => [...prev, obj]);
+    };
+
+    const onRemoveItem = (id) => {
+        //axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${id}`);
+        setCartItems((prev) => prev.filter(item => item.id !== id));
     };
 
     const onChangeSearchInput = (event) => {
         setSearchValue(event.target.value);
-    }
+    };
 
     return (
         <div className="wrapper clear">
-            {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
-            <Header onClickCart={() => setCartOpened(true)} />
+            {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
+            <Header onClickCart={() => setCartOpened(true)}/>
             <div className="content p-40">
                 <div className="d-flex align-center justify-between mb-40">
                     <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>
                     <div className="search-block d-flex">
-                        <img src="/img/search.svg" alt="Search" />
-                        {searchValue && <img onClick={() => setSearchValue('')} className="clear cu-p" src="/img/btn-remove.svg" alt="Clear" />}
-                        <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
+                        <img src="/img/search.svg" alt="Search"/>
+                        {searchValue &&
+                        <img onClick={() => setSearchValue('')} className="clear cu-p" src="/img/btn-remove.svg"
+                             alt="Clear"/>}
+                        <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..."/>
                     </div>
                 </div>
 

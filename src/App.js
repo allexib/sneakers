@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -17,6 +18,10 @@ function App() {
             .then((json) => {
                 setItems(json);
             });
+
+        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items').then(res => {
+           console.log(res.data);
+        });
     }, []);
 
     const onAddToCart = (obj) => {

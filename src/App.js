@@ -21,16 +21,17 @@ function App() {
         //     .then((json) => {
         //         setItems(json);
         //     }); нативный фетч пример
+        async function fetchData() {
+            const cartResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart');
+            const favoritesResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites');
+            const itemsResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items');
 
-        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items').then((res) => {
-            setItems(res.data);
-        });
-        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart').then((res) => {
-            setCartItems(res.data);
-        });
-        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites').then((res) => {
-            setFavorites(res.data);
-        });
+            setCartItems(cartResponse.data);
+            setFavorites(favoritesResponse.data);
+            setItems(itemsResponse.data);
+        }
+
+        fetchData();
     }, []);
 
     const onAddToCart = (obj) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -28,6 +28,9 @@ function App() {
         axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart').then((res) => {
             setCartItems(res.data);
         });
+        axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites').then((res) => {
+            setFavorites(res.data);
+        });
     }, []);
 
     const onAddToCart = (obj) => {
@@ -37,12 +40,21 @@ function App() {
 
     const onRemoveItem = (id) => {
         axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${id}`);
-        setCartItems((prev) => prev.filter(item => item.id !== id));
+        setCartItems((prev) => prev.filter((item) => item.id !== id));
     };
 
-    const onAddToFavorite = (obj) => {
-        axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites', obj);
-        setFavorites((prev) => [...prev, obj]);
+    const onAddToFavorite = async (obj) => {
+        try {
+            if (favorites.find(favObj => favObj.id == obj.id)) {
+                axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites/${obj.id}`);
+                //setFavorites((prev) => prev.filter((item) => item.id !== obj.id)); удадять сразу из фаворитов, но это не удобно
+            } else {
+                const {data} = await axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites', obj);
+                setFavorites((prev) => [...prev, data]);
+            }
+        } catch (error) {
+            alert('Не удалось добавить в фавориты((');
+        }
     };
 
     const onChangeSearchInput = (event) => {
@@ -66,7 +78,7 @@ function App() {
             </Route>
 
             <Route path="/favorites" exact>
-                <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
+                <Favorites items={favorites} onAddToFavorite={onAddToFavorite}/>
             </Route>
         </div>
     );

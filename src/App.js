@@ -20,7 +20,7 @@ function App() {
         //     })
         //     .then((json) => {
         //         setItems(json);
-        //     });
+        //     }); нативный фетч пример
 
         axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items').then((res) => {
             setItems(res.data);
@@ -34,8 +34,15 @@ function App() {
     }, []);
 
     const onAddToCart = (obj) => {
-        axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart', obj);
-        setCartItems((prev) => [...prev, obj]);
+        console.log(obj);
+
+        if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+            axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${obj.id}`);
+            setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+        } else {
+            axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart', obj);
+            setCartItems((prev) => [...prev, obj]);
+        }
     };
 
     const onRemoveItem = (id) => {
@@ -45,7 +52,7 @@ function App() {
 
     const onAddToFavorite = async (obj) => {
         try {
-            if (favorites.find(favObj => favObj.id == obj.id)) {
+            if (favorites.find(favObj => favObj.id === obj.id)) {
                 axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites/${obj.id}`);
                 //setFavorites((prev) => prev.filter((item) => item.id !== obj.id)); удадять сразу из фаворитов, но это не удобно
             } else {
@@ -69,6 +76,7 @@ function App() {
             <Route path="/" exact>
                 <Home
                     items={items}
+                    cartItems={cartItems}
                     searchValue={searchValue}
                     setSearchValue={setSearchValue}
                     onChangeSearchInput={onChangeSearchInput}

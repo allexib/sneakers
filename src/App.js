@@ -12,6 +12,7 @@ function App() {
     const [favorites, setFavorites] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
     const [cartOpened, setCartOpened] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect(() => {
         // fetch('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items')
@@ -22,9 +23,12 @@ function App() {
         //         setItems(json);
         //     }); нативный фетч пример
         async function fetchData() {
+            //setIsLoading(true); ставить если ф-я вып > 1 раза, если 1 раз то не ставить.
             const cartResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart');
             const favoritesResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites');
             const itemsResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items');
+
+            setIsLoading(false);
 
             setCartItems(cartResponse.data);
             setFavorites(favoritesResponse.data);
@@ -83,6 +87,7 @@ function App() {
                     onChangeSearchInput={onChangeSearchInput}
                     onAddToFavorite={onAddToFavorite}
                     onAddToCart={onAddToCart}
+                    isLoading = {isLoading}
                 />
             </Route>
 

@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader"
 
 import AppContext from "../../context";
 
-function Card({ id, title, imageUrl, price, onFavorite, onPlus, favorited = false, added = false, loading = false }) {
+function Card({ id, title, imageUrl, price, onFavorite, onPlus, favorited = false, loading = false }) {
     const { isItemAdded } = React.useContext(AppContext);
     const [isFavorite, setIsFavorite] = React.useState(favorited);
 

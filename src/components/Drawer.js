@@ -4,13 +4,34 @@ import axios from 'axios';
 import Info from './Info';
 import AppContext from '../context';
 
-function Drawer({ onClose, onRemove, items = []}) {
-    const { setCartItems } = React.useContext(AppContext);
-    const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    const onClickOrder = () => {
-        setIsOrderComplete(true);
-        setCartItems([]);
+function Drawer({onClose, onRemove, items = []}) {
+    const {cartItems, setCartItems} = React.useContext(AppContext);
+    const [orderId, setOrderId] = React.useState(null);
+    const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+    const [idLoading, setIsloading] = React.useState(false);
+
+    const onClickOrder = async () => {
+        try {
+            setIsloading(true);
+            const {data} = await axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/orders', {
+                items: cartItems,
+            });
+            setOrderId(data.id);
+            setIsOrderComplete(true);
+            setCartItems([]);
+
+            for (let i = 0; i < cartItems.length; i++) {
+                const item = cartItems[i];
+                await axios.delete('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/' + item.id);
+                await delay(1000);
+            }
+            //костыль чтобы мокапи не блочил
+        } catch (error) {
+            alert('Ошибка при создании заказа');
+        }
+        setIsloading(false);
     };
 
     return (
@@ -55,15 +76,15 @@ function Drawer({ onClose, onRemove, items = []}) {
                                     <b>1074 руб. </b>
                                 </li>
                             </ul>
-                            <button onClick={onClickOrder} className="greenButton">
+                            <button disabled={idLoading} onClick={onClickOrder} className="greenButton">
                                 Оформить заказ <img src="/img/arrow.svg" alt="Arrow"/>
                             </button>
                         </div>
                     </div>
                 ) : (
                     <Info
-                        title={isOrderComplete ? "Заказ офрмлен!" : "Корзина пуста"}
-                        descripter={isOrderComplete ? "Ваш заказ #42 скоро будет передан курьеру" : "Добавьте хоть что-то"}
+                        title={isOrderComplete ? "Заказ оформлен!" : "Корзина пуста"}
+                        description={isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьеру` : "Добавьте хоть что-то"}
                         image={isOrderComplete ? "./img/complete-order.jpg" : "/img/empty-cart.jpg"}
                     />
                 )}

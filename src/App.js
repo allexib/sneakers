@@ -27,34 +27,52 @@ function App() {
         //         setItems(json);
         //     }); нативный фетч пример
         async function fetchData() {
-            //setIsLoading(true); ставить если ф-я вып > 1 раза, если 1 раз то не ставить.
-            const cartResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart');
-            const favoritesResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites');
-            const itemsResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items');
+            try {
+                const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+                    axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart'),
+                    axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites'),
+                    axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items'),
+                ]);
+                //setIsLoading(true); ставить если ф-я вып > 1 раза, если 1 раз то не ставить.
+                // const cartResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart');
+                // const favoritesResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/favorites');
+                // const itemsResponse = await axios.get('https://60fd97bc1fa9e90017c70f0b.mockapi.io/items'); рефакторинг
 
-            setIsLoading(false);
-
-            setCartItems(cartResponse.data);
-            setFavorites(favoritesResponse.data);
-            setItems(itemsResponse.data);
+                setIsLoading(false);
+                setCartItems(cartResponse.data);
+                setFavorites(favoritesResponse.data);
+                setItems(itemsResponse.data);
+            } catch (error) {
+                alert('Ошибка при запросе данных');
+                console.error(error);
+            }
         }
-
         fetchData();
     }, []);
 
-    const onAddToCart = (obj) => {
-        if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-            axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${obj.id}`);
-            setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-        } else {
-            axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart', obj);
-            setCartItems((prev) => [...prev, obj]);
+    const onAddToCart = async (obj) => {
+        try {
+            if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+                setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+                await axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${obj.id}`);
+            } else {
+                setCartItems((prev) => [...prev, obj]);
+                await axios.post('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart', obj);
+            }
+        } catch (error) {
+            alert('Ошибка при добавлении в корзину');
+            console.error(error);
         }
     };
 
     const onRemoveItem = (id) => {
-        axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${id}`);
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        try {
+            axios.delete(`https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/${id}`);
+            setCartItems((prev) => prev.filter((item) => item.id !== id));
+        } catch (error) {
+            alert('Ошибка при удалении из корзины');
+            console.error(error);
+        }
     };
 
     const onAddToFavorite = async (obj) => {
@@ -69,6 +87,7 @@ function App() {
             }
         } catch (error) {
             alert('Не удалось добавить в фавориты((');
+            console.error(error);
         }
     };
 
@@ -81,8 +100,10 @@ function App() {
     }
 
     return (
-        <AppContext.Provider value={{items, cartItems, favorites, isItemAdded, onAddToFavorite,
-            onAddToCart, setCartOpened, setCartItems }}>
+        <AppContext.Provider value={{
+            items, cartItems, favorites, isItemAdded, onAddToFavorite,
+            onAddToCart, setCartOpened, setCartItems
+        }}>
 
             <div className="wrapper clear">
                 <Drawer
@@ -103,15 +124,15 @@ function App() {
                         onChangeSearchInput={onChangeSearchInput}
                         onAddToFavorite={onAddToFavorite}
                         onAddToCart={onAddToCart}
-                        isLoading = {isLoading}
+                        isLoading={isLoading}
                     />
                 </Route>
 
                 <Route path="/favorites" exact>
-                    <Favorites />
+                    <Favorites/>
                 </Route>
                 <Route path="/orders" exact>
-                    <Orders />
+                    <Orders/>
                 </Route>
             </div>
         </AppContext.Provider>

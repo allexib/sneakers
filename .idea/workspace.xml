@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="289cc4bc-ce6a-40ad-b014-37170020460f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Card/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Drawer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,13 +18,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="35" column="94" lean-forward="true" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
+            <state relative-caret-position="423">
+              <caret line="101" column="12" lean-forward="true" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#725#1757#0" />
+                <element signature="e#2140#2298#0" />
+                <element signature="e#2344#3069#0" />
+                <element signature="e#3115#3166#0" />
               </folding>
             </state>
           </provider>
@@ -32,8 +37,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Drawer/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+            <state relative-caret-position="604">
+              <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -95,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Card/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+            <state relative-caret-position="546">
+              <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -110,8 +115,8 @@
       <file leaf-file-name="Home.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/Home.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+            <state relative-caret-position="330">
+              <caret line="33" column="53" lean-forward="true" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -139,14 +144,14 @@
         <option value="$PROJECT_DIR$/src/components/Header.js" />
         <option value="$PROJECT_DIR$/src/pages/Orders.jsx" />
         <option value="$PROJECT_DIR$/src/pages/Home.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Card/index.js" />
         <option value="$PROJECT_DIR$/src/components/Drawer.js" />
         <option value="$PROJECT_DIR$/src/components/Driver/Drawer.js" />
         <option value="$PROJECT_DIR$/src/index.scss" />
         <option value="$PROJECT_DIR$/src/components/Drawer/Drawer.module.css" />
-        <option value="$PROJECT_DIR$/src/components/Drawer/index.js" />
         <option value="$PROJECT_DIR$/src/components/Drawer/Drawer.module.scss" />
+        <option value="$PROJECT_DIR$/src/components/Drawer/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/components/Card/index.js" />
       </list>
     </option>
   </component>
@@ -194,6 +199,13 @@
               <item name="sneakers" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sneakers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sneakers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Card" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sneakers" type="b2602c69:ProjectViewProjectNode" />
@@ -277,12 +289,12 @@
       <workItem from="1627642027643" duration="12674000" />
       <workItem from="1627720686698" duration="7847000" />
       <workItem from="1627754422980" duration="28000" />
-      <workItem from="1627810041541" duration="10584000" />
+      <workItem from="1627810041541" duration="11953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97348000" />
+    <option name="totallyTimeSpent" value="98717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1272" y="102" width="1296" height="1040" extended-state="6" />
@@ -322,7 +334,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -611,13 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Home.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -629,16 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="95" lean-forward="true" selection-start-line="14" selection-start-column="95" selection-end-line="14" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Card/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -662,16 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Drawer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Drawer/Drawer.module.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -679,10 +664,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Drawer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/Home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="33" column="53" lean-forward="true" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="35" column="94" lean-forward="true" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
+        <state relative-caret-position="423">
+          <caret line="101" column="12" lean-forward="true" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#725#1757#0" />
+            <element signature="e#2140#2298#0" />
+            <element signature="e#2344#3069#0" />
+            <element signature="e#3115#3166#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Card/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

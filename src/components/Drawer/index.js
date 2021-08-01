@@ -29,7 +29,7 @@ function Index({onClose, onRemove, items = [], opened}) {
                 await axios.delete('https://60fd97bc1fa9e90017c70f0b.mockapi.io/cart/' + item.id);
                 await delay(1000);
             }
-            //костыль чтобы мокапи не блочил
+            //костыль задержка чтобы мокапи не блочил
         } catch (error) {
             alert('Ошибка при создании заказа');
         }
